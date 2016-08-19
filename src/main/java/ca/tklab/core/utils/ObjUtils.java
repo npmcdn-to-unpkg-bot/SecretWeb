@@ -65,7 +65,6 @@ public class ObjUtils  implements ApplicationContextAware {
      * 
      * </pre>
      * 
-     * @author : 김상준
      * @param obj
      * @return
      */
@@ -94,7 +93,6 @@ public class ObjUtils  implements ApplicationContextAware {
      *  Object -&gt; obj.toString();
      * </pre>
      * 
-     * @author : 김상준
      * @param obj
      * @return
      */
@@ -109,7 +107,7 @@ public class ObjUtils  implements ApplicationContextAware {
             return String.valueOf(obj).trim();
             // return ((String) obj).v;
         } else if (obj instanceof Collections) {
-            return StringUtils.collectionToDelimitedString((Collection) obj, ";");
+            return StringUtils.collectionToDelimitedString((Collection<?>) obj, ";");
         } else if (obj instanceof Object[]) {
             return StringUtils.arrayToDelimitedString((Object[]) obj, ";");
             // return ((String) obj).v;

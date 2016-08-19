@@ -618,7 +618,6 @@ public class TStringUtils {
      *  Object -&gt; obj.toString();
      * </pre>
      * 
-     * @author : 김상준
      * @param obj
      * @return
      */
@@ -629,8 +628,7 @@ public class TStringUtils {
             return String.valueOf(obj).trim();
             // return ((String) obj).v;
         } else if (obj instanceof Collections) {
-            return StringUtils.collectionToDelimitedString((Collection) obj,
-                    ";");
+            return StringUtils.collectionToDelimitedString((Collection<?>) obj, ";");
             // return ((String) obj).v;
         } else {
             return obj.toString();

@@ -1,9 +1,7 @@
 package ca.tklab.core.utils;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -26,20 +24,20 @@ import org.apache.commons.lang3.ArrayUtils;
 
 public class ArrayUtil {
 
-	/**
-	 * Map에 있는 value object가 collection이나 array가 아니면 array로 만들어줌.
-	 * 
-	 * @param param
-	 * @param key
-	 * @return
-	 */
-	public static Map object2arryaInMap(Map param, String key) {
-		if(param!= null && param.containsKey(key)) {
-			Object o = param.get(key);			
-			param.put(key, ArrayUtil.toArray(o));
-		}
-		return param;
-	}
+//	/**
+//	 * Map에 있는 value object가 collection이나 array가 아니면 array로 만들어줌.
+//	 * 
+//	 * @param param
+//	 * @param key
+//	 * @return
+//	 */
+//	public static Map object2arryaInMap(Map param, String key) {
+//		if(param!= null && param.containsKey(key)) {
+//			Object o = param.get(key);			
+//			param.put(key, ArrayUtil.toArray(o));
+//		}
+//		return param;
+//	}
 	
     /**
      * 문자열 배열을 delimiter를 추가한 문자열로 돌려줌.
@@ -59,30 +57,31 @@ public class ArrayUtil {
         return sb.toString();
     }
     
-    /**
-     * Object를 Object Array 형태로 돌려준다. 
-     * object가 Array면 그냥 돌려줌.
-     * @param obj
-     * @return
-     */
-    public static Object[] toArray(Object obj) {
-         if(obj == null ){
-             return ArrayUtils.EMPTY_OBJECT_ARRAY;
-         } else if (obj instanceof Object[]) {
-             return (Object[]) obj;
-         } else if (obj instanceof Collection) {
-             return (Object[]) ((Collection)obj).toArray(new Object[0])  ;         
-         } else {
-             return ArrayUtils.add(ArrayUtils.EMPTY_OBJECT_ARRAY, obj);
-         }
-    }
+//    /**
+//     * Object를 Object Array 형태로 돌려준다. 
+//     * object가 Array면 그냥 돌려줌.
+//     * @param obj
+//     * @return
+//     */
+//    public static Object[] toArray(Object obj) {
+//         if(obj == null ){
+//             return ArrayUtils.EMPTY_OBJECT_ARRAY;
+//         } else if (obj instanceof Object[]) {
+//             return (Object[]) obj;
+//         } else if (obj instanceof Collection) {
+//             return (Object[]) ((Collection)obj).toArray(new Object[0])  ;         
+//         } else {
+//             return ArrayUtils.add(ArrayUtils.EMPTY_OBJECT_ARRAY, obj);
+//         }
+//    }
     
     /**
      * 배열을 List로 돌려줌
      * @param obj
      * @return
      */
-    public static <T> List<T> convertArrayToList(T... obj) {
+    @SafeVarargs
+	public static <T> List<T> convertArrayToList(T... obj) {
         return Arrays.asList(obj);
     }
     
@@ -96,7 +95,7 @@ public class ArrayUtil {
      */
     public static String[] list2StrArray(List<String> list) {
         if (list != null) {
-            return (String[])list.toArray(new String[0]);
+            return list.toArray(new String[0]);
         } else {
             return new String[0];
         }
