@@ -459,13 +459,6 @@
 					<showWarnings>${compiler.warnings}</showWarnings>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<webXml>${basedir}/target/generated-web.xml</webXml>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 	<groupId>ca.tklab</groupId>
