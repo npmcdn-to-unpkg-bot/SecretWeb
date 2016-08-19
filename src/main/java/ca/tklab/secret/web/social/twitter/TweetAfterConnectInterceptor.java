@@ -22,23 +22,26 @@ import org.springframework.social.connect.web.ConnectInterceptor;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.WebRequest;
 
 public class TweetAfterConnectInterceptor implements ConnectInterceptor<Twitter> {
 
+	@Override
 	public void preConnect(ConnectionFactory<Twitter> provider, MultiValueMap<String, String> parameters, WebRequest request) {
 		if (StringUtils.hasText(request.getParameter(POST_TWEET_PARAMETER))) {
-			request.setAttribute(POST_TWEET_ATTRIBUTE, Boolean.TRUE, WebRequest.SCOPE_SESSION);
+			request.setAttribute(POST_TWEET_ATTRIBUTE, Boolean.TRUE, RequestAttributes.SCOPE_SESSION);
 		}
 	}
 
+	@Override
 	public void postConnect(Connection<Twitter> connection, WebRequest request) {
-		if (request.getAttribute(POST_TWEET_ATTRIBUTE, WebRequest.SCOPE_SESSION) != null) {
+		if (request.getAttribute(POST_TWEET_ATTRIBUTE, RequestAttributes.SCOPE_SESSION) != null) {
 			try {
 				connection.updateStatus("I've connected with the Spring Social Showcase!");
 			} catch (DuplicateStatusException e) {
 			}
-			request.removeAttribute(POST_TWEET_ATTRIBUTE, WebRequest.SCOPE_SESSION);
+			request.removeAttribute(POST_TWEET_ATTRIBUTE, RequestAttributes.SCOPE_SESSION);
 		}
 	}
 

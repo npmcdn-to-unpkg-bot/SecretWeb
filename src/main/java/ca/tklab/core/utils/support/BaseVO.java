@@ -36,7 +36,8 @@ public class BaseVO implements Serializable {
 // 
 	
 
-    public String toString() {
+    @Override
+	public String toString() {
         try {
 //            return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
             return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
@@ -48,14 +49,16 @@ public class BaseVO implements Serializable {
     /**
      * equals
      */
-    public boolean equals(Object o) {
+    @Override
+	public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
     }
 
     /**
      * hashCode
      */
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return HashCodeBuilder.reflectionHashCode(this);
     }
 }

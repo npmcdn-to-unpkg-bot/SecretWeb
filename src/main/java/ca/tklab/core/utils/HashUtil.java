@@ -101,10 +101,10 @@ public class HashUtil {
      */
     public static Map<String, Object> paramMap(HttpServletRequest request) {
         Map<String, Object> pmap = new HashMap<String, Object>();
-        Enumeration<String> en = (Enumeration<String>) request
+        Enumeration<String> en = request
                 .getParameterNames();
         while (en.hasMoreElements()) {
-            String key = (String) en.nextElement();
+            String key = en.nextElement();
             pmap.put(key, ObjUtils.getSafeString(request.getParameter(key)));
         }
         return pmap;
@@ -114,10 +114,10 @@ public class HashUtil {
             String paramUsing) {
         Map<String, Object> pmap = new HashMap<String, Object>();
         String[] paramUsingSplit = paramUsing.split("( )*,( )*");
-        Enumeration<String> en = (Enumeration<String>) request
+        Enumeration<String> en = request
                 .getParameterNames();
         while (en.hasMoreElements()) {
-            String key = (String) en.nextElement();
+            String key = en.nextElement();
             if(ArrayUtils.contains(paramUsingSplit, key)) {
             //if (ArrayUtil.checkInKey(paramUsingSplit, key))
                 pmap.put(key, ObjUtils.getSafeString(request.getParameter(key)));

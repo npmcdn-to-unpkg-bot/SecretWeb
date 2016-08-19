@@ -268,7 +268,7 @@ public class FileUtil {
                 }
             }
         }
-        return (FileInfoVO[]) fileList.toArray(new FileInfoVO[0]);
+        return fileList.toArray(new FileInfoVO[0]);
     }
     
     /**
