@@ -15,37 +15,37 @@ import org.apache.commons.lang3.ArrayUtils;
 
 
 public class HashUtil {
-
-    @SuppressWarnings("unchecked")
-    public static void writeMap(Map paramMap) {
-        Iterator<Entry> iterator = paramMap.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Entry entry = iterator.next();
-            System.out.println("Key :" + entry.getKey());
-            System.out.println("Value :" + entry.getValue());
-        }
-    }
-
-    public static String map2String(Map paramMap) {
-        StringBuffer sb = new StringBuffer();
-        Iterator<Entry> iterator = paramMap.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Entry entry = iterator.next();
-            sb.append("{" + entry.getKey() + "=" + entry.getValue() + "}");
-        }
-        return sb.toString();
-    }
-
-    @SuppressWarnings("unchecked")
-    public static HashMap<String, Object> convertMap(Map paramMap) {
-        HashMap<String, Object> tempMap = new HashMap<String, Object>();
-        Iterator<Entry> iterator = paramMap.keySet().iterator();
-        while (iterator.hasNext()) {
-            Entry entry = iterator.next();
-            tempMap.put((String) entry.getKey(), entry.getValue());
-        }
-        return tempMap;
-    }
+//
+//    @SuppressWarnings("unchecked")
+//    public static void writeMap(Map<K,V> paramMap) {
+//        Iterator<Entry> iterator = paramMap.entrySet().iterator();
+//        while (iterator.hasNext()) {
+//            Entry entry = iterator.next();
+//            System.out.println("Key :" + entry.getKey());
+//            System.out.println("Value :" + entry.getValue());
+//        }
+//    }
+//
+//    public static String map2String(Map paramMap) {
+//        StringBuffer sb = new StringBuffer();
+//        Iterator<Entry> iterator = paramMap.entrySet().iterator();
+//        while (iterator.hasNext()) {
+//            Entry entry = iterator.next();
+//            sb.append("{" + entry.getKey() + "=" + entry.getValue() + "}");
+//        }
+//        return sb.toString();
+//    }
+//
+//    @SuppressWarnings("unchecked")
+//    public static HashMap<String, Object> convertMap(Map paramMap) {
+//        HashMap<String, Object> tempMap = new HashMap<String, Object>();
+//        Iterator<Entry> iterator = paramMap.keySet().iterator();
+//        while (iterator.hasNext()) {
+//            Entry entry = iterator.next();
+//            tempMap.put((String) entry.getKey(), entry.getValue());
+//        }
+//        return tempMap;
+//    }
 
     /**
      * example : "key1=val1;key2=val2;key3=val3"
