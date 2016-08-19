@@ -45,113 +45,139 @@ public class MptFeedTemplate  implements FeedOperations {
 		this.objectMapper = objectMapper;
 	}
 
+	@Override
 	public PagedList<Post> getFeed() {
 		return getFeed("me", FIRST_PAGE);
 	}
 
+	@Override
 	public PagedList<Post> getFeed(PagingParameters pagedListParameters) {
 		return getFeed("me", pagedListParameters);
 	}
 	
+	@Override
 	public PagedList<Post> getFeed(String ownerId) {
 		return getFeed(ownerId, FIRST_PAGE);
 	}
 		
+	@Override
 	public PagedList<Post> getFeed(String ownerId, PagingParameters pagedListParameters) {
 		JsonNode responseNode = fetchConnectionList(graphApi.getBaseGraphApiUrl() + ownerId + "/feed", pagedListParameters);
 		return deserializeList(responseNode, null, Post.class);
 	}
 
+	@Override
 	public PagedList<Post> getHomeFeed() {
 		return getHomeFeed(FIRST_PAGE);
 	}
 	
+	@Override
 	public PagedList<Post> getHomeFeed(PagingParameters pagedListParameters) {
 		JsonNode responseNode = fetchConnectionList(graphApi.getBaseGraphApiUrl() + "me/home", pagedListParameters);
 		return deserializeList(responseNode, null, Post.class);
 	}
 
+	@Override
 	public PagedList<Post> getStatuses() {
 		return getStatuses("me", FIRST_PAGE);
 	}
 	
+	@Override
 	public PagedList<Post> getStatuses(PagingParameters pagedListParameters) {
 		return getStatuses("me", pagedListParameters);
 	}
 
+	@Override
 	public PagedList<Post> getStatuses(String userId) {
 		return getStatuses(userId, FIRST_PAGE);
 	}
 	
+	@Override
 	public PagedList<Post> getStatuses(String userId, PagingParameters pagedListParameters) {
 		JsonNode responseNode = fetchConnectionList(graphApi.getBaseGraphApiUrl() + userId + "/statuses", pagedListParameters);
 		return deserializeList(responseNode, "status", Post.class);
 	}
 
+	@Override
 	public PagedList<Post> getLinks() {
 		return getLinks("me", FIRST_PAGE);
 	}
 
+	@Override
 	public PagedList<Post> getLinks(PagingParameters pagedListParameters) {
 		return getLinks("me", pagedListParameters);
 	}
 
+	@Override
 	public PagedList<Post> getLinks(String ownerId) {
 		return getLinks(ownerId, FIRST_PAGE);
 	}
 	
+	@Override
 	public PagedList<Post> getLinks(String ownerId, PagingParameters pagedListParameters) {
 		JsonNode responseNode = fetchConnectionList(graphApi.getBaseGraphApiUrl() + ownerId + "/links", pagedListParameters);
 		return deserializeList(responseNode, "link", Post.class);
 	}
 
+	@Override
 	public PagedList<Post> getPosts() {
 		return getPosts("me", FIRST_PAGE);
 	}
 
+	@Override
 	public PagedList<Post> getPosts(PagingParameters pagedListParameters) {
 		return getPosts("me", pagedListParameters);
 	}
 
+	@Override
 	public PagedList<Post> getPosts(String ownerId) {
 		return getPosts(ownerId, FIRST_PAGE);
 	}
 	
+	@Override
 	public PagedList<Post> getPosts(String ownerId, PagingParameters pagedListParameters) {
 		JsonNode responseNode = fetchConnectionList(graphApi.getBaseGraphApiUrl() + ownerId + "/posts", pagedListParameters);
 		return deserializeList(responseNode, null, Post.class);
 	}
 
+	@Override
 	public PagedList<Post> getTagged() {
 		return getTagged("me", FIRST_PAGE);
 	}
 
+	@Override
 	public PagedList<Post> getTagged(PagingParameters pagedListParameters) {
 		return getTagged("me", pagedListParameters);
 	}
 
+	@Override
 	public PagedList<Post> getTagged(String ownerId) {
 		return getTagged(ownerId, FIRST_PAGE);
 	}
 	
+	@Override
 	public PagedList<Post> getTagged(String ownerId, PagingParameters pagedListParameters) {
 		JsonNode responseNode = fetchConnectionList(graphApi.getBaseGraphApiUrl() + ownerId + "/tagged", pagedListParameters);
 		return deserializeList(responseNode, null, Post.class);
 	}
 
+	@Override
 	public Post getPost(String entryId) {
 		ObjectNode responseNode = (ObjectNode) restTemplate.getForObject(graphApi.getBaseGraphApiUrl() + entryId, JsonNode.class);
 		return deserializePost(null, Post.class, responseNode);
 	}
 
+	@Override
 	public String updateStatus(String message) {
 		return post("me", message);
 	}
 
+	@Override
 	public String postLink(String message, FacebookLink link) {
 		return postLink("me", message, link);
 	}
 	
+	@Override
 	public String postLink(String ownerId, String message, FacebookLink link) {
 		MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 		map.set("link", link.getLink());
@@ -162,30 +188,36 @@ public class MptFeedTemplate  implements FeedOperations {
 		return graphApi.publish(ownerId, "feed", map);
 	}
 	
+	@Override
 	public String post(PostData post) {
 		return graphApi.publish(post.getTargetFeedId(), "feed", post.toRequestParameters());
 	}
 	
+	@Override
 	public String post(String ownerId, String message) {
 		MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 		map.set("message", message);
 		return graphApi.publish(ownerId, "feed", map);
 	}
 
+	@Override
 	public void deletePost(String id) {
 		graphApi.delete(id);
 	}
 
+	@Override
 	public PagedList<Post> getCheckins() {
 		return getCheckins(new PagingParameters(25, 0, null, null));
 	}
 
+	@Override
 	public PagedList<Post> getCheckins(PagingParameters pagedListParameters) {
 		MultiValueMap<String, String> params = getPagingParameters(pagedListParameters);
 		params.set("with", "location");
 		return graphApi.fetchConnections("me", "posts", Post.class, params);
 	}
 
+	@Override
 	public Post getCheckin(String checkinId) {
 		return graphApi.fetchObject(checkinId, Post.class);
 	}

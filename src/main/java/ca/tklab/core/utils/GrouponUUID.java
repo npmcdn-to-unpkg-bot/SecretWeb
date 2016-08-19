@@ -332,10 +332,10 @@ public class GrouponUUID {
 
             // create integer from first 4 bytes of md5 hash
             int x;
-            x  = ((int)digest[0] & 0xFF);
-            x |= ((int)digest[1] & 0xFF) << 8;
-            x |= ((int)digest[2] & 0xFF) << 16;
-            x |= ((int)digest[3] & 0xFF) << 24;
+            x  = (digest[0] & 0xFF);
+            x |= (digest[1] & 0xFF) << 8;
+            x |= (digest[2] & 0xFF) << 16;
+            x |= (digest[3] & 0xFF) << 24;
             COUNTER.set(x);
         }
         sequential = true;
