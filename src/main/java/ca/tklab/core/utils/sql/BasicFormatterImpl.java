@@ -271,7 +271,6 @@ public class BasicFormatterImpl {
 			}
 		}
  
-		@SuppressWarnings({"UnnecessaryBoxing"})
 		private void select() {
 			out();
 			indent++;
@@ -329,7 +328,6 @@ public class BasicFormatterImpl {
 			afterValues = true;
 		}
  
-		@SuppressWarnings({"UnnecessaryUnboxing"})
 		private void closeParen() {
 			parensSinceSelect--;
 			if (parensSinceSelect < 0) {

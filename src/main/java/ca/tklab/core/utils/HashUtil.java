@@ -3,10 +3,8 @@ package ca.tklab.core.utils;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -101,7 +99,6 @@ public class HashUtil {
      *            HttpServletRequest object
      * @return Map<String, Object>
      */
-    @SuppressWarnings("unchecked")
     public static Map<String, Object> paramMap(HttpServletRequest request) {
         Map<String, Object> pmap = new HashMap<String, Object>();
         Enumeration<String> en = (Enumeration<String>) request
@@ -113,7 +110,6 @@ public class HashUtil {
         return pmap;
     }
 
-    @SuppressWarnings("unchecked")
     public static Map<String, Object> paramMap(HttpServletRequest request,
             String paramUsing) {
         Map<String, Object> pmap = new HashMap<String, Object>();
