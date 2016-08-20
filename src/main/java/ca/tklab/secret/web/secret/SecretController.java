@@ -30,9 +30,7 @@ public class SecretController {
 
     private final ArticleRepository articleRepository;
 	private final ProfileRepository profileRepository;
-//    
-//    
-//    
+   
     @Inject
     public SecretController(
     		ArticleRepository articleRepository,
@@ -58,14 +56,16 @@ public class SecretController {
 		logger.debug("CurrentUser: {}", currentUser.getName());
 
 		
-//		List<Article> articles =  articleRepository.findTop10ByWriterIdOrderByIdDesc(currentUser.getName());
 		List<Article> articles =  articleRepository.getArticlesByUID(currentUser.getName());
 		result.setData(articles);
 		return result;
 	}
 	
 	@RequestMapping(value="/rest/article", method=RequestMethod.POST)
-	public ApiResult registerArticle(Model model, Principal currentUser, @RequestBody @Valid ArticleForm form,  BindingResult formBinding) {
+	public ApiResult registerArticle(Model model, 
+			Principal currentUser, 
+			@RequestBody @Valid ArticleForm form,  
+			BindingResult formBinding) {
 		ApiResult result = new ApiResult();
 
 		if(formBinding.hasErrors() ) {
@@ -73,7 +73,6 @@ public class SecretController {
 		} else {
 			Profile writer = profileRepository.findById(currentUser.getName());
 			Article article =  Article.getBuilder()
-					//.imageUrl("bg_1024.jpg")
 					.profile(writer)
 					.content(form.getContent())
 					.build();

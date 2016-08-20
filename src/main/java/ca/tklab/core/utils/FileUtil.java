@@ -43,7 +43,6 @@ public class FileUtil {
     
     private static String getClassRootPath() {
         try {
-//        	return FileUtil.class.getProtectionDomain().getCodeSource().getLocation().getPath();
             return getResource("/").getFile();
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -333,13 +332,7 @@ public class FileUtil {
           // LogLog.warn(TSTR, t);
         }
 
-        // Last ditch attempt: get the resource from the class path. It
-        // may be the case that clazz was loaded by the Extentsion class
-        // loader which the parent of the system class loader. Hence the
-        // code below.
-//        LogLog.debug(
-//          "Trying to find [" + resource
-//          + "] using ClassLoader.getSystemResource().");
+
 
         return ClassLoader.getSystemResource(resource);
       }

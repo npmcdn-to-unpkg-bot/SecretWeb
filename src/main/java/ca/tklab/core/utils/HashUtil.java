@@ -13,22 +13,14 @@ import org.apache.commons.lang3.ArrayUtils;
 
 
 public class HashUtil {
-//
-//    @SuppressWarnings("unchecked")
-//    public static void writeMap(Map<K,V> paramMap) {
-//        Iterator<Entry> iterator = paramMap.entrySet().iterator();
-//        while (iterator.hasNext()) {
-//            Entry entry = iterator.next();
-//            System.out.println("Key :" + entry.getKey());
-//            System.out.println("Value :" + entry.getValue());
-//        }
-//    }
-//
-//    public static String map2String(Map paramMap) {
+
+
+
+//    public static String map2String(Map<?, ?> paramMap) {
 //        StringBuffer sb = new StringBuffer();
-//        Iterator<Entry> iterator = paramMap.entrySet().iterator();
+//        Iterator<?> iterator = paramMap.entrySet().iterator();
 //        while (iterator.hasNext()) {
-//            Entry entry = iterator.next();
+//            Entry<?,?> entry = iterator.next();
 //            sb.append("{" + entry.getKey() + "=" + entry.getValue() + "}");
 //        }
 //        return sb.toString();
