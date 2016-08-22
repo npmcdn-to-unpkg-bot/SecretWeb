@@ -32,7 +32,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -83,11 +83,13 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public TemplateResolver templateResolver() {
-		TemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+//		TemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+		TemplateResolver templateResolver = new ServletContextTemplateResolver();
 		templateResolver.setCharacterEncoding(CharEncoding.UTF_8); 
-		templateResolver.setPrefix("/views/");
+		templateResolver.setPrefix("/WEB-INF/views/");
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML5");
+		templateResolver.setCacheable(false);
 		return templateResolver;
 	}
 	

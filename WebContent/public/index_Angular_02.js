@@ -1,5 +1,6 @@
 var secretApp = angular.module('secretApp', []);
 
+
 secretApp.controller('ArticleListController', function ArticleListController($rootScope, $scope, $http) {
 
   $rootScope.$on('updatedArticle', function(event, args) {

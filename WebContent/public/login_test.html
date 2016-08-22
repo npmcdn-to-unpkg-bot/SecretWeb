@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="secretApp">
+	<head>
+	    <meta charset="utf-8">
+		<link rel="shortcut icon" type="image/x-icon" href="/public/favicon.ico">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>My Secret </title>
+	    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
+		<script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src = "AngularConfig.js"></script>
+		<script src = "angular/login.js"></script>
+	    <link href="styles.css" rel="stylesheet">
+
+
+	    <style>
+	      body {
+	        width: 1px;
+	        min-width: 100%;
+	        *width: 100%;
+	      }
+	    </style>
+  </head>
+
+<body class="ang" ng-controller="ApplicationController">
+
+<div ng-if="currentUser">Welcome, {{ currentUser.name }}</div>
+<div ng-if="isAuthorized(userRoles.admin)">You're admin.</div>
+<div ng-switch on="currentUser.role">
+  <div ng-switch-when="userRoles.admin">You're admin.</div>
+  <div ng-switch-when="userRoles.editor">You're editor.</div>
+  <div ng-switch-default>You're something else.</div>
+</div>
+</body>
+</html>

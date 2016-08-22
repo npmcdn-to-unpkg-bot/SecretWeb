@@ -7,13 +7,19 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.Index;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "cm_friend")
+@Table(name = "cm_friend",
+	indexes = {
+		@Index(name = "cm_friend_01",  columnList="REQUESTER_ID,ACCEPTANT_ID, ACCEPTED", unique = true),
+		@Index(name = "cm_friend_02",  columnList="ACCEPTANT_ID,REQUESTER_ID, ACCEPTED", unique = true)
+})
 @IdClass(FriendKey.class)
+
 public class Friend implements Serializable {
 
 	/**

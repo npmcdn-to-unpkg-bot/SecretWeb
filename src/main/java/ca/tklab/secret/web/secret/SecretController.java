@@ -39,7 +39,7 @@ public class SecretController {
         this.profileRepository = profileRepository;
     }
 	
-	@RequestMapping(value="/rest/profile/owner", method=RequestMethod.GET)
+	@RequestMapping(value="/api/profile/owner", method=RequestMethod.GET)
 	public ApiResult getProfile(Model model, Principal currentUser) {
 		ApiResult result = new ApiResult();
 		logger.debug("CurrentUser: {}", currentUser.getName());
@@ -50,7 +50,7 @@ public class SecretController {
 		return result;
 	}
 	
-	@RequestMapping(value="/rest/article", method=RequestMethod.GET)
+	@RequestMapping(value="/api/article", method=RequestMethod.GET)
 	public ApiResult getArticle(Model model, Principal currentUser) {
 		ApiResult result = new ApiResult();
 		logger.debug("CurrentUser: {}", currentUser.getName());
@@ -61,7 +61,7 @@ public class SecretController {
 		return result;
 	}
 	
-	@RequestMapping(value="/rest/article", method=RequestMethod.POST)
+	@RequestMapping(value="/api/article", method=RequestMethod.POST)
 	public ApiResult registerArticle(Model model, 
 			Principal currentUser, 
 			@RequestBody @Valid ArticleForm form,  

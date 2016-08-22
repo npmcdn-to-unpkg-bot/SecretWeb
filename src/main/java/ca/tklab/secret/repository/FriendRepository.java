@@ -15,8 +15,6 @@ public interface FriendRepository  extends JpaRepository<Friend, Long> {
 		+ " SELECT acceptantID "
 		+ "  FROM Friend "
 		+ " WHERE requester_id = :uid  and accepted = true ")		
-//	@Query(" SELECT acceptantID "
-//		+ "  FROM Friend "
-//		+ " WHERE requester_id = :uid  and accepted = true ")
+
 	public List<String> getFriendsIds(@Param("uid") String id);
 }
